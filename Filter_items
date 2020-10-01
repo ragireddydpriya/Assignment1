@@ -1,0 +1,21 @@
+import os, shutil
+dict_extensions={
+    'video_extension':('.MP4','.mp4','.3GP','.3gp','.OGG','.ogg','.WMV','.wmv','.WEBM','.webm''.FLV','.flv','.WAV'),
+    'audio_extension':('.3gp','.aa','.aac','.aax','.act','.aiff','.alac','.amr','.ape','.au','.awb','.dct','.dss','.dvf','.dvf','.gsm','.webm','.wv','.wma','.wav','.mp3','.m4p','.m4a','.m4b'),	
+    'text_extension':('.doc','.odt','.pdf','.rtf','.tex','.txt','.wpd'),
+    'image_extension':('.tif','.tiff','.bmp','.jpg','.jpeg','.gif','.PNG','.png','.eps','.raw','.cr2','.nef','.orf','.sr2'),
+}
+folderpath=input("enter folder path: ")
+def file_finder(folder,file_extension):
+    return[file for file in os.listdir(folder) for extension in file_extension if file.endswith(extension)]
+    
+
+for extension_type,extension_tuple in dict_extensions.items():
+    folder_name=extension_type.split('_')[0]+'flies'
+    folder_path=os.path.join(folderpath,folder_name)
+    
+    for item in file_finder(folderpath,extension_tuple):
+        
+        item_path=os.path.join(folderpath,item)
+        item_new_path=os.path.join(folder_path,item)
+        shutil.copy(item_path,item_new_path)
